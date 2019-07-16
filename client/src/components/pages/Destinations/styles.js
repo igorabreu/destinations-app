@@ -7,6 +7,7 @@ export const DestinationsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 30px;
+  box-sizing: border-box;
 `;
 
 export const Title = styled.h1`
