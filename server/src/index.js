@@ -4,7 +4,8 @@ var mongoose = require("mongoose")
 var app = express()
 var apiRoutes = require("./routes/api-routes")
 require("dotenv").config()
-var port = process.env.PORT
+var port = 8000
+var mongoURL = process.env.MONGO_URL
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
@@ -22,7 +23,7 @@ app.use(
 )
 app.use(bodyParser.json())
 
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true })
+mongoose.connect(mongoURL, { useNewUrlParser: true })
 
 mongoose.connection.on("connected", res => {
   console.log("Database is connected")

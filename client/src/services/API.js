@@ -5,6 +5,11 @@ export const API = {
     return get(`/destinations`).then(res => {
       return res.json();
     });
+  },
+  login: () => {
+    return post(`/login`).then(res => {
+      return res.json();
+    });
   }
 };
 
