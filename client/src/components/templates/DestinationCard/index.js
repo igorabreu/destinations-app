@@ -21,11 +21,13 @@ const DestinationCard = ({
   numberOfTravellers,
   spendingBudget,
   handleInputChange,
-  index
+  index,
+  onDelete,
+  onEdit
 }) => {
   let [isOpen, toggleOpenCard] = useState(false);
   return (
-    <CardWrapper>
+    <CardWrapper isOpen={isOpen}>
       {!isOpen ? (
         <DestinationHeader onClick={() => toggleOpenCard(true)}>
           <Name>{`${index + 1} - ${country}`}</Name>
@@ -62,7 +64,9 @@ const DestinationCard = ({
             name="startDate"
             placeholder="start date"
             autocomplete="startDate"
-            value={startDate}
+            value={
+              startDate.length > 10 ? startDate.substring(0, 10) : startDate
+            }
             handleInputChange={e => handleInputChange(e)}
             error={false}
             resetError={() => console.log()}
@@ -72,7 +76,7 @@ const DestinationCard = ({
             name="endDate"
             placeholder="end date"
             autocomplete="endDate"
-            value={endDate}
+            value={endDate.length > 10 ? endDate.substring(0, 10) : endDate}
             handleInputChange={e => handleInputChange(e)}
             error={false}
             resetError={() => console.log()}
@@ -112,14 +116,17 @@ const DestinationCard = ({
               type="submit"
               text="update"
               filled={true}
-              onClick={e => console.log(e)}
+              onClick={e => {
+                toggleOpenCard(false);
+                onEdit(e);
+              }}
               fontSize={13}
             />
             <Button
               type="submit"
               text="delete"
               filled={false}
-              onClick={e => console.log(e)}
+              onClick={e => onDelete()}
               fontSize={13}
             />
           </BottomOptions>

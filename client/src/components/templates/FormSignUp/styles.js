@@ -80,6 +80,10 @@ export const LowerOptions = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  margin-top: 15px;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+export const CancelWrapper = styled.div`
+  margin-left: 10px;
 `;

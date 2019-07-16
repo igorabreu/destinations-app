@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 35px;
+  margin-bottom: ${props => (props.isOpen ? `40px` : `20px`)};
 `;
 
 export const DestinationHeader = styled.div`

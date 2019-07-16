@@ -51,7 +51,7 @@ exports.update = function(req, res) {
     user.save(function(err) {
       if (err) res.json(err)
       res.json({
-        data: contact
+        data: user
       })
     })
   })

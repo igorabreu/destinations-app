@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import { API } from "../../../services/API";
+import { setAuth } from "../../../store/actions";
+import { connect } from "react-redux";
 import DestinationCard from "../../templates/DestinationCard";
 import NewItem from "../../templates/NewItem";
 import iconPlus from "../../../assets/images/plus-icon.svg";
+import logoutIcon from "../../../assets/images/logout-icon.svg";
 import {
   DestinationsWrapper,
   MainHeader,
   Title,
   DestinationList,
   IconPlus,
-  AddNew
+  AddNew,
+  Logout,
+  LogoutIcon
 } from "./styles";
 
 class Home extends Component {
@@ -25,6 +30,9 @@ class Home extends Component {
     this.onChangeNewItem = this.onChangeNewItem.bind(this);
     this.handleDestinationCreation = this.handleDestinationCreation.bind(this);
     this.getDestinationsList = this.getDestinationsList.bind(this);
+    this.handleDeleteDestination = this.handleDeleteDestination.bind(this);
+    this.handleEditionInput = this.handleEditionInput.bind(this);
+    this.handleEditDestination = this.handleEditDestination.bind(this);
   }
 
   handleNewItem() {
@@ -57,13 +65,40 @@ class Home extends Component {
     });
   }
 
-  handleDestinationCreation = () => {
+  handleDestinationCreation() {
     const { newDestination } = this.state;
     API.createNewDestination(newDestination).then(res => {
-      console.log(res);
+      this.getDestinationsList();
+      this.onCancelNewItem();
+    });
+  }
+
+  handleDeleteDestination(destinationId) {
+    API.deleteDestination(destinationId).then(res => {
       this.getDestinationsList();
     });
-  };
+  }
+
+  handleEditDestination(destinationId, index) {
+    const { listItems } = this.state;
+    API.editDestination(destinationId, listItems[index]).then(res => {
+      this.getDestinationsList();
+    });
+  }
+
+  handleEditionInput(e, index) {
+    const { listItems } = this.state;
+    const newEditedItem = {
+      ...listItems[index],
+      [e.target.name]: e.target.value
+    };
+    const newEditedList = [...listItems];
+    newEditedList[0] = newEditedItem;
+
+    this.setState({
+      listItems: newEditedList
+    });
+  }
 
   getDestinationsList() {
     API.getDestinations().then(res => {
@@ -73,6 +108,10 @@ class Home extends Component {
     });
   }
 
+  handleLogout = () => {
+    return this.props.dispatch(setAuth(false));
+  };
+
   componentDidMount() {
     this.getDestinationsList();
   }
@@ -81,6 +120,9 @@ class Home extends Component {
     const { newDestination, listItems } = this.state;
     return (
       <DestinationsWrapper>
+        <Logout onClick={() => this.handleLogout()}>
+          Log Out <LogoutIcon src={logoutIcon} />
+        </Logout>
         <MainHeader>
           <Title>Destinations</Title>
           <AddNew>
@@ -100,7 +142,12 @@ class Home extends Component {
           {listItems.map((destination, index) => {
             return (
               <DestinationCard
-                key={destination.id}
+                key={destination._id}
+                onDelete={() => this.handleDeleteDestination(destination._id)}
+                onEdit={() =>
+                  this.handleEditDestination(destination._id, index)
+                }
+                handleInputChange={e => this.handleEditionInput(e, index)}
                 index={index}
                 {...destination}
               />
@@ -112,4 +159,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default connect()(Home);

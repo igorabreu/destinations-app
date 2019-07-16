@@ -9,15 +9,17 @@ import {
   FormBox,
   MainLabel,
   FormContent,
-  ButtonWrapper
+  ButtonWrapper,
+  CancelWrapper
 } from "./styles";
 
-const FormLogin = ({
+const FormSignUp = ({
   handleInputChange,
   handleSubmit,
-  formData,
+  userNewAccount,
   error,
-  resetError
+  resetError,
+  onCancel
 }) => {
   return (
     <FormWrapper>
@@ -25,13 +27,13 @@ const FormLogin = ({
         <WelcomeTitle>Welcome</WelcomeTitle>
         <FormBox>
           <FormContent>
-            <MainLabel>Login</MainLabel>
+            <MainLabel>Sign Up</MainLabel>
             <Input
               type="email"
               name="email"
               placeholder="email"
               autocomplete="email"
-              value={formData && formData.email}
+              value={userNewAccount && userNewAccount.email}
               handleInputChange={e => handleInputChange(e)}
               error={error}
               resetError={() => resetError()}
@@ -40,8 +42,18 @@ const FormLogin = ({
               type="password"
               name="password"
               placeholder="password"
-              autocomplete="current-password"
-              value={formData && formData.password}
+              autocomplete="password"
+              value={userNewAccount && userNewAccount.password}
+              handleInputChange={e => handleInputChange(e)}
+              error={error}
+              resetError={() => resetError()}
+            />
+            <Input
+              type="password"
+              name="confirmPassword"
+              placeholder="confirm password"
+              autocomplete="confirmPassword"
+              value={userNewAccount && userNewAccount.confirmPassword}
               handleInputChange={e => handleInputChange(e)}
               error={error}
               resetError={() => resetError()}
@@ -49,11 +61,20 @@ const FormLogin = ({
             <ButtonWrapper>
               <Button
                 type="submit"
-                text="Sing In"
+                text="Sing Up"
                 filled={true}
                 onClick={e => handleSubmit(e)}
                 fontSize={16}
               />
+              <CancelWrapper>
+                <Button
+                  type="submit"
+                  text="Cancel"
+                  filled={false}
+                  onClick={e => onCancel(e)}
+                  fontSize={16}
+                />
+              </CancelWrapper>
             </ButtonWrapper>
           </FormContent>
         </FormBox>
@@ -62,15 +83,16 @@ const FormLogin = ({
   );
 };
 
-FormLogin.propTypes = {
+FormSignUp.propTypes = {
   handleInputChange: PropTypes.func,
   handleSubmit: PropTypes.func,
-  formData: PropTypes.shape({
+  userNewAccount: PropTypes.shape({
     email: PropTypes.string,
-    password: PropTypes.string
+    password: PropTypes.string,
+    confirmPass: PropTypes.string
   }),
   error: PropTypes.bool,
   resetError: PropTypes.func
 };
 
-export default FormLogin;
+export default FormSignUp;

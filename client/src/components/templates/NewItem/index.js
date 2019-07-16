@@ -26,7 +26,7 @@ const NewItem = ({
 }) => {
   let [isOpen, toggleOpenCard] = useState(false);
   return (
-    <CardWrapper>
+    <CardWrapper isOpen={isOpen}>
       {!isOpen ? (
         <DestinationHeader onClick={() => toggleOpenCard(true)}>
           <Name>New Destination</Name>
@@ -63,7 +63,9 @@ const NewItem = ({
             name="startDate"
             placeholder="start date"
             autocomplete="startDate"
-            value={startDate}
+            value={
+              startDate.length > 10 ? startDate.substring(0, 10) : startDate
+            }
             handleInputChange={e => handleInputChange(e)}
             error={false}
             resetError={() => console.log()}
@@ -73,7 +75,7 @@ const NewItem = ({
             name="endDate"
             placeholder="end date"
             autocomplete="endDate"
-            value={endDate}
+            value={endDate.length > 10 ? endDate.substring(0, 10) : endDate}
             handleInputChange={e => handleInputChange(e)}
             error={false}
             resetError={() => console.log()}

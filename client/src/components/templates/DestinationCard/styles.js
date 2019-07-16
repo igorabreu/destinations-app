@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: ${props => (props.isOpen ? `40px` : `20px`)};
 `;
 
 export const DestinationHeader = styled.div`
@@ -31,5 +31,5 @@ export const BottomOptions = styled.div`
   flex-direction: row;
   width: 230px;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 8px;
 `;

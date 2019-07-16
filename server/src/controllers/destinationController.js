@@ -44,20 +44,18 @@ exports.update = function(req, res) {
   Destination.findById(req.params.destination_id, function(err, destination) {
     if (err) res.send(err)
 
-    destination = {
-      country: req.body.country,
-      city: req.body.city,
-      startDate: req.body.startDate,
-      endDate: req.body.endDate,
-      hotelAddress: req.body.hotelAddress,
-      numberOfTravellers: req.body.numberOfTravellers,
-      spendingBudget: req.body.spendingBudget
-    }
+    destination.country = req.body.country
+    destination.city = req.body.city
+    destination.startDate = req.body.startDate
+    destination.endDate = req.body.endDate
+    destination.hotelAddress = req.body.hotelAddress
+    destination.numberOfTravellers = req.body.numberOfTravellers
+    destination.spendingBudget = req.body.spendingBudget
 
-    user.save(function(err) {
+    destination.save(function(err) {
       if (err) res.json(err)
       res.json({
-        data: contact
+        data: destination
       })
     })
   })

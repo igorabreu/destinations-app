@@ -20,15 +20,22 @@ export const Title = styled.h1`
 export const DestinationList = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  width: 90%;
   margin-top: 30px;
+  @media (min-width: 1000px) {
+    max-width: 500px;
+  }
 `;
 
 export const MainHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 400px;
+  width: 90%;
+  margin-top: 50px;
+  @media (min-width: 1000px) {
+    max-width: 500px;
+  }
 `;
 
 export const IconPlus = styled.img``;
@@ -47,6 +54,30 @@ export const AddNew = styled.div`
   cursor: pointer;
 
   &:hover {
-    opacity: 0.9;
+    opacity: 0.8;
   }
+`;
+
+export const Logout = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  @media (min-width: 1000px) {
+    max-width: 500px;
+  }
+  font-size: 12px;
+  font-family: ${props => props.theme.font};
+  color: ${props => props.theme.color.primaryColor};
+  text-transform: uppercase;
+  font-weight: bolder;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+export const LogoutIcon = styled.img`
+  max-width: 18px;
+  margin-left: 7px;
+  transform: translate(0px, -2px);
 `;
