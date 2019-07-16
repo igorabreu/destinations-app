@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import PropTypes from "prop-types";
 import Input from "../../elements/Input";
 import Button from "../../elements/Button";
 import arrowDownIcon from "../../../assets/images/arrow-down-icon.svg";
@@ -47,7 +46,6 @@ const DestinationCard = ({
             value={country}
             handleInputChange={e => handleInputChange(e)}
             error={false}
-            resetError={() => console.log()}
           />
           <Input
             type="text"
@@ -57,7 +55,6 @@ const DestinationCard = ({
             value={city}
             handleInputChange={e => handleInputChange(e)}
             error={false}
-            resetError={() => console.log()}
           />
           <Input
             type="date"
@@ -69,7 +66,6 @@ const DestinationCard = ({
             }
             handleInputChange={e => handleInputChange(e)}
             error={false}
-            resetError={() => console.log()}
           />
           <Input
             type="date"
@@ -79,7 +75,6 @@ const DestinationCard = ({
             value={endDate.length > 10 ? endDate.substring(0, 10) : endDate}
             handleInputChange={e => handleInputChange(e)}
             error={false}
-            resetError={() => console.log()}
           />
           <Input
             type="text"
@@ -89,7 +84,6 @@ const DestinationCard = ({
             value={hotelAddress}
             handleInputChange={e => handleInputChange(e)}
             error={false}
-            resetError={() => console.log()}
           />
           <Input
             type="number"
@@ -99,17 +93,16 @@ const DestinationCard = ({
             value={numberOfTravellers}
             handleInputChange={e => handleInputChange(e)}
             error={false}
-            resetError={() => console.log()}
           />
           <Input
             type="number"
             name="spendingBudget"
-            placeholder="spending budget"
+            placeholder="spending budget ($)"
             autocomplete="spendingBudget"
             value={spendingBudget}
+            pattern
             handleInputChange={e => handleInputChange(e)}
             error={false}
-            resetError={() => console.log()}
           />
           <BottomOptions>
             <Button

@@ -32,7 +32,10 @@ class Input extends Component {
   };
 
   handleInputFocus(bool) {
-    this.props.resetError();
+    const { resetError } = this.props;
+    if (resetError) {
+      this.props.resetError();
+    }
     this.setState({
       focused: bool
     });

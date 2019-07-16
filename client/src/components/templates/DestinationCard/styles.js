@@ -10,6 +10,7 @@ export const DestinationHeader = styled.div`
   display: flex;
   flex-direction: row;
   cursor: pointer;
+  margin-bottom: 8px;
 `;
 
 export const Name = styled.h5`
