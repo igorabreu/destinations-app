@@ -5,7 +5,7 @@
     "client-start": "cd client && yarn start",
     "client-install": "cd client && yarn install",
     "server-start": "cd server && yarn start",
-    "server-install": "cd client && yarn install",
+    "server-install": "cd server && yarn install",
     "install-dependencies": "concurrently --kill-others-on-fail \"yarn install\" \"yarn server-install\" \"yarn client-install\"",
     "start": "concurrently --kill-others-on-fail \"yarn server-start\" \"yarn client-start\""
   },
