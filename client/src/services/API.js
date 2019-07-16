@@ -6,8 +6,8 @@ export const API = {
       return res.json();
     });
   },
-  login: () => {
-    return post(`/login`).then(res => {
+  userLogin: body => {
+    return post(`/login`, body).then(res => {
       return res.json();
     });
   }
@@ -20,5 +20,22 @@ const get = url => {
     })
     .catch(err => {
       console.log(err);
+    });
+};
+
+const post = (url, body) => {
+  return fetch(`${API_URL}${url}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  })
+    .then(response => {
+      return response;
+    })
+    .catch(error => {
+      return error;
     });
 };

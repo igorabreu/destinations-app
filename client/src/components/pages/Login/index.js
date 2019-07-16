@@ -21,17 +21,14 @@ class Login extends Component {
   }
 
   setAuthTrue = (token, user_id, user_email) => {
-    return this.props.dispatch(setAuth(true, token, user_id, user_email));
+    return this.props.dispatch(setAuth(true));
   };
 
   handleInputChange(e) {
     this.setState({
       formData: {
         ...this.state.formData,
-        [e.target.name]:
-          e.target.name === "keepLogin"
-            ? !this.state.formData.keepLogin
-            : e.target.value
+        [e.target.name]: e.target.value
       }
     });
   }
@@ -41,19 +38,11 @@ class Login extends Component {
     const { formData } = this.state;
 
     API.userLogin({
-      username: formData.username,
+      email: formData.email,
       password: formData.password
     }).then(res => {
-      if (res.ok) {
-        res.json().then(res => {
-          if (res.success) {
-            this.setAuthTrue(res.data.token, res.user_id, formData.username);
-          } else {
-            this.setState({
-              error: true
-            });
-          }
-        });
+      if (res.auth) {
+        this.setAuthTrue();
       } else {
         this.setState({
           error: true
@@ -71,7 +60,6 @@ class Login extends Component {
   render() {
     const { userAuth, textContent } = this.props;
     const { formData, error } = this.state;
-    console.log(userAuth);
     if (userAuth) return <Redirect to="/destinations" />;
     return (
       <LoginPage>

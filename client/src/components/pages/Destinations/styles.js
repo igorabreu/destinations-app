@@ -1,27 +1,26 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
-export const HomeWrapper = styled.div`
+export const DestinationsWrapper = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  @media (min-width: 768px) {
-    align-items: center;
-  }
-`
+  padding: 30px;
+`;
 
-export const CharactersWrapper = styled.div``
+export const Title = styled.h1`
+  font-family: ${props => props.theme.font};
+  color: ${props => props.theme.color.primaryColor};
+  font-size: 28px;
+  display: inline-block;
+  margin-bottom: 10px;
+`;
 
-export const Character = styled.div``
-
-export const Button = styled.div``
-
-export const CharacterBox = styled.div`
-  width: 250px;
+export const DestinationList = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  cursor: pointer;
-`
+  flex-direction: column;
+  max-width: 500px;
+`;
+
+export const DestinationCard = styled.div``;

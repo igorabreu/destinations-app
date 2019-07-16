@@ -17,8 +17,7 @@ const FormLogin = ({
   handleSubmit,
   formData,
   error,
-  resetError,
-  textContent
+  resetError
 }) => {
   return (
     <FormWrapper>
@@ -29,10 +28,10 @@ const FormLogin = ({
             <MainLabel>Login</MainLabel>
             <Input
               type="email"
-              name="username"
+              name="email"
               placeholder="username"
               autocomplete="username"
-              value={formData && formData.username}
+              value={formData && formData.email}
               handleInputChange={e => handleInputChange(e)}
               error={error}
               resetError={() => resetError()}
@@ -68,8 +67,7 @@ FormLogin.propTypes = {
   handleSubmit: PropTypes.func,
   formData: PropTypes.shape({
     username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    keepLogin: PropTypes.bool.isRequired
+    password: PropTypes.string.isRequired
   }),
   error: PropTypes.bool,
   resetError: PropTypes.func
