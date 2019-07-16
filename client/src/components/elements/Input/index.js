@@ -1,17 +1,17 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { SimpleInput, InputWrapper, Placeholder, ActiveSign } from "./styles"
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { SimpleInput, InputWrapper, Placeholder, ActiveSign } from "./styles";
 
 class Input extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       focused: false
-    }
-    this.handleInputFocus = this.handleInputFocus.bind(this)
-    this.handleInputChange = this.handleInputChange.bind(this)
-    this.setFocus = this.setFocus.bind(this)
-    this.inputRef = React.createRef()
+    };
+    this.handleInputFocus = this.handleInputFocus.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.setFocus = this.setFocus.bind(this);
+    this.inputRef = React.createRef();
   }
 
   static propTypes = {
@@ -19,9 +19,8 @@ class Input extends Component {
     status: PropTypes.string,
     placeholder: PropTypes.string,
     autocomplete: PropTypes.string,
-    name: PropTypes.string,
-    value: PropTypes.string
-  }
+    name: PropTypes.string
+  };
 
   static defaultProps = {
     type: "text",
@@ -30,22 +29,22 @@ class Input extends Component {
     autocomplete: "",
     name: "",
     value: ""
-  }
+  };
 
   handleInputFocus(bool) {
-    this.props.resetError()
+    this.props.resetError();
     this.setState({
       focused: bool
-    })
+    });
   }
 
   setFocus() {
-    this.inputRef.current.focus()
-    this.handleInputFocus(true)
+    this.inputRef.current.focus();
+    this.handleInputFocus(true);
   }
 
   handleInputChange(e) {
-    this.props.handleInputChange(e)
+    this.props.handleInputChange(e);
   }
 
   render() {
@@ -57,13 +56,13 @@ class Input extends Component {
       value,
       name,
       error
-    } = this.props
-    const { focused } = this.state
+    } = this.props;
+    const { focused } = this.state;
     return (
       <InputWrapper>
         <Placeholder
           onClick={() => this.setFocus(true)}
-          placedOnTop={focused || value !== ""}
+          placedOnTop={focused || value !== "" || type === "date"}
         >
           {placeholder}
         </Placeholder>
@@ -81,8 +80,8 @@ class Input extends Component {
         />
         <ActiveSign active={focused} error={error} />
       </InputWrapper>
-    )
+    );
   }
 }
 
-export default Input
+export default Input;

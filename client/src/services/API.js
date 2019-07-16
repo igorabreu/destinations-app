@@ -1,13 +1,18 @@
 const API_URL = "http://localhost:8000/api";
 
 export const API = {
+  userLogin: body => {
+    return post(`/login`, body).then(res => {
+      return res.json();
+    });
+  },
   getDestinations: () => {
     return get(`/destinations`).then(res => {
       return res.json();
     });
   },
-  userLogin: body => {
-    return post(`/login`, body).then(res => {
+  createNewDestination: body => {
+    return post(`/destinations`, body).then(res => {
       return res.json();
     });
   }

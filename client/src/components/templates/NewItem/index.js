@@ -12,7 +12,8 @@ import {
   BottomOptions
 } from "./styles";
 
-const DestinationCard = ({
+const NewItem = ({
+  onCancel,
   country,
   city,
   startDate,
@@ -21,20 +22,20 @@ const DestinationCard = ({
   numberOfTravellers,
   spendingBudget,
   handleInputChange,
-  index
+  createNewDestination
 }) => {
   let [isOpen, toggleOpenCard] = useState(false);
   return (
     <CardWrapper>
       {!isOpen ? (
         <DestinationHeader onClick={() => toggleOpenCard(true)}>
-          <Name>{`${index + 1} - ${country}`}</Name>
+          <Name>New Destination</Name>
           <ArrowIcon src={arrowDownIcon} />
         </DestinationHeader>
       ) : (
         <React.Fragment>
           <DestinationHeader onClick={() => toggleOpenCard(false)}>
-            <Name>{`${index + 1} - ${country}`}</Name>
+            <Name>New Destination</Name>
             <ArrowIcon src={arrowUpIcon} />
           </DestinationHeader>
           <Input
@@ -110,16 +111,16 @@ const DestinationCard = ({
           <BottomOptions>
             <Button
               type="submit"
-              text="update"
+              text="Create"
               filled={true}
-              onClick={e => console.log(e)}
+              onClick={e => createNewDestination(e)}
               fontSize={13}
             />
             <Button
               type="submit"
-              text="delete"
+              text="Cancel"
               filled={false}
-              onClick={e => console.log(e)}
+              onClick={e => onCancel(e)}
               fontSize={13}
             />
           </BottomOptions>
@@ -129,4 +130,4 @@ const DestinationCard = ({
   );
 };
 
-export default DestinationCard;
+export default NewItem;

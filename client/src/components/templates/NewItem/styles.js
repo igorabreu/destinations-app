@@ -3,13 +3,12 @@ import styled from "styled-components";
 export const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 `;
 
 export const DestinationHeader = styled.div`
   display: flex;
   flex-direction: row;
-  cursor: pointer;
 `;
 
 export const Name = styled.h5`
@@ -22,6 +21,7 @@ export const Name = styled.h5`
 `;
 
 export const ArrowIcon = styled.img`
+  cursor: pointer;
   max-width: 14px;
   transform: translate(0px, -5px);
 `;
